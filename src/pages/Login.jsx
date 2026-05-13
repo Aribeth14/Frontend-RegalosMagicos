@@ -1,0 +1,131 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+function Login() {
+  const [esLogin, setEsLogin] = useState(true)
+
+  return (
+    <div className="min-h-screen bg-[#fdf6f9] flex items-center justify-center px-4">
+      <div className="w-full max-w-md">
+
+        <div className="text-center mb-8">
+          <div className="w-14 h-14 border-2 border-[#00b1c1] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 bg-white">
+            🎁
+          </div>
+          <h1 className="text-2xl font-bold text-gray-700">Regalos Mágicos</h1>
+          <p className="text-gray-400 text-sm mt-1">desayunos y regalos</p>
+        </div>
+
+        <div className="bg-white rounded-3xl border border-pink-100 p-8 shadow-sm">
+
+          <div className="flex bg-[#fdf6f9] rounded-2xl p-1 mb-8">
+            <button
+              onClick={() => setEsLogin(true)}
+              className={`flex-1 py-2 rounded-xl text-sm font-semibold transition ${
+                esLogin ? 'bg-white text-[#bd3869] shadow-sm' : 'text-gray-400'
+              }`}
+            >
+              Iniciar sesión
+            </button>
+            <button
+              onClick={() => setEsLogin(false)}
+              className={`flex-1 py-2 rounded-xl text-sm font-semibold transition ${
+                !esLogin ? 'bg-white text-[#bd3869] shadow-sm' : 'text-gray-400'
+              }`}
+            >
+              Registrarse
+            </button>
+          </div>
+
+          {esLogin ? (
+            <div className="flex flex-col gap-4">
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  placeholder="tu@correo.com"
+                  className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
+                />
+              </div>
+              <div className="text-right">
+                <Link to="/recuperar-password" className="text-xs text-[#00b1c1] hover:underline">
+                  ¿Olvidaste tu contraseña?
+                </Link>
+              </div>
+              <button className="w-full bg-[#bd3869] text-white py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition mt-2">
+                Iniciar sesión
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Nombre completo
+                </label>
+                <input
+                  type="text"
+                  placeholder="Tu nombre"
+                  className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  placeholder="tu@correo.com"
+                  className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Confirmar contraseña
+                </label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
+                />
+              </div>
+              <button className="w-full bg-[#bd3869] text-white py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition mt-2">
+                Crear cuenta
+              </button>
+            </div>
+          )}
+
+        </div>
+
+        <p className="text-center text-xs text-gray-400 mt-6">
+          Al continuar aceptas nuestros{' '}
+          <a href="#" className="text-[#00b1c1] hover:underline">términos y condiciones</a>
+        </p>
+
+      </div>
+    </div>
+  )
+}
+
+export default Login
