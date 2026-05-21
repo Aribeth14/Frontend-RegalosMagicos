@@ -8,6 +8,8 @@ import Catalogo from './pages/Catalogo'
 import Perfil from './pages/Perfil'
 import Carrito from './pages/Carrito'
 import RecuperarPassword from './pages/RecuperarPassword'
+import ConfirmarCuenta from './pages/ConfirmarCuenta'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/recuperar-password" element={<RecuperarPassword />} />
+            <Route path="/confirmar/:token" element={<ConfirmarCuenta />} />
+            <Route path="/reset/:token" element={<ResetPassword />} />
           </Routes>
         </div>
         <Footer />
