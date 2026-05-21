@@ -1,15 +1,35 @@
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import { ToastContainer } from 'react-toastify'
 import { useFetch } from '../hooks/useFetch'
 
-function RecuperarPassword() {
+function ResetPassword() {
+  const navigate = useNavigate()
+  const { token } = useParams()
   const { fetchDataBackend, loading } = useFetch()
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const [showPassword, setShowPassword] = useState(false)
+  const [tokenValido, setTokenValido] = useState(false)
 
-  const recuperar = async (dataForm) => {
-    const url = `${import.meta.env.VITE_BACKEND_URL}/recuperar-password`
-    await fetchDataBackend(url, dataForm, "POST")
+  useEffect(() => {
+    const verifyToken = async () => {
+      const url = `${import.meta.env.VITE_BACKEND_URL}/recuperarpassword/${token}`
+      await fetchDataBackend(url, null, 'GET')
+      setTokenValido(true)
+    }
+    verifyToken()
+  }, [])
+
+  const changePassword = async (dataForm) => {
+    const url = `${import.meta.env.VITE_BACKEND_URL}/nuevopassword/${token}`
+    await fetchDataBackend(url, dataForm, 'POST')
+    setTimeout(() => {
+      if (dataForm.password === dataForm.confirmpassword) {
+        navigate('/login')
+      }
+    }, 2000)
   }
 
   return (
@@ -21,31 +41,60 @@ function RecuperarPassword() {
           <div className="w-14 h-14 border-2 border-[#00b1c1] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 bg-white">
             🔐
           </div>
-          <h1 className="text-2xl font-bold text-gray-700">Recuperar contraseña</h1>
-          <p className="text-gray-400 text-sm mt-1">Te enviaremos un enlace a tu correo</p>
+          <h1 className="text-2xl font-bold text-gray-700">Nueva contraseña</h1>
+          <p className="text-gray-400 text-sm mt-1">Ingresa tu nueva contraseña</p>
         </div>
 
         <div className="bg-white rounded-3xl border border-pink-100 p-8 shadow-sm">
-          <form onSubmit={handleSubmit(recuperar)} className="flex flex-col gap-4">
-            <div>
-              <label className="text-xs font-semibold text-gray-500 mb-1 block">
-                Correo electrónico
-              </label>
-              <input
-                type="email"
-                placeholder="tu@correo.com"
-                className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
-                {...register("email", { required: "El correo es obligatorio" })}
-              />
-              {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
+          {tokenValido ? (
+            <form onSubmit={handleSubmit(changePassword)} className="flex flex-col gap-4">
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Nueva contraseña
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition pr-10"
+                    {...register("password", { required: "La contraseña es obligatoria" })}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-[#bd3869]"
+                  >
+                    {showPassword ? <MdVisibilityOff size={18} /> : <MdVisibility size={18} />}
+                  </button>
+                </div>
+                {errors.password && <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>}
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                  Confirmar contraseña
+                </label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
+                  {...register("confirmpassword", { required: "Confirma tu contraseña" })}
+                />
+                {errors.confirmpassword && <p className="text-red-400 text-xs mt-1">{errors.confirmpassword.message}</p>}
+              </div>
+
+              <button
+                disabled={loading}
+                className="w-full bg-[#bd3869] text-white py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition mt-2 disabled:opacity-60"
+              >
+                {loading ? "Guardando..." : "Guardar nueva contraseña"}
+              </button>
+            </form>
+          ) : (
+            <div className="text-center py-4">
+              <p className="text-sm text-gray-400">Verificando token...</p>
             </div>
-            <button
-              disabled={loading}
-              className="w-full bg-[#bd3869] text-white py-3 rounded-xl text-sm font-semibold hover:opacity-90 transition mt-2 disabled:opacity-60"
-            >
-              {loading ? "Enviando..." : "Enviar enlace"}
-            </button>
-          </form>
+          )}
         </div>
 
         <div className="text-center mt-6">
@@ -59,4 +108,4 @@ function RecuperarPassword() {
   )
 }
 
-export default RecuperarPassword
+export default ResetPassword
