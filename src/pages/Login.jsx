@@ -1,19 +1,27 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import { ToastContainer } from 'react-toastify'
 import { useFetch } from '../hooks/useFetch'
+import storeAuth from "../context/storeAuth"
 
 function Login() {
   const [esLogin, setEsLogin] = useState(true)
   const [showPassword, setShowPassword] = useState(false)
   const { fetchDataBackend, loading } = useFetch()
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const { setToken, setRol } = storeAuth()
+  const navigate = useNavigate()
 
   const loginUser = async (dataForm) => {
     const url = `${import.meta.env.VITE_BACKEND_URL}/login`
-    await fetchDataBackend(url, dataForm, "POST")
+    const response = await fetchDataBackend(url, dataForm, 'POST')
+    if (response) {
+      setToken(response.token)
+      setRol(response.rol)
+      navigate('/dashboard')
+    }
   }
 
   const registerUser = async (dataForm) => {

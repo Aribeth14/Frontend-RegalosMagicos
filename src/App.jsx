@@ -8,28 +8,57 @@ import Catalogo from './pages/Catalogo'
 import Perfil from './pages/Perfil'
 import Carrito from './pages/Carrito'
 import RecuperarPassword from './pages/RecuperarPassword'
-import ConfirmarCuenta from './pages/ConfirmarCuenta'
 import ResetPassword from './pages/ResetPassword'
+import ConfirmarCuenta from './pages/ConfirmarCuenta'
+import Dashboard from './layout/Dashboard'
+import PublicRoute from './routes/PublicRoute'
+import ProtectedRoute from './routes/ProtectedRoute'
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <div className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/catalogo" element={<Catalogo />} />
-            <Route path="/perfil" element={<Perfil />} />
-            <Route path="/carrito" element={<Carrito />} />
-            <Route path="/recuperar-password" element={<RecuperarPassword />} />
-            <Route path="/confirmar/:token" element={<ConfirmarCuenta />} />
-            <Route path="/reset/:token" element={<ResetPassword />} />
-          </Routes>
-        </div>
-        <Footer />
-      </div>
+      <Routes>
+
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <div className="flex-1"><Home /></div>
+              <Footer />
+            </div>
+          } />
+          <Route path="/catalogo" element={
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <div className="flex-1"><Catalogo /></div>
+              <Footer />
+            </div>
+          } />
+          <Route path="/carrito" element={
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <div className="flex-1"><Carrito /></div>
+              <Footer />
+            </div>
+          } />
+          <Route path="/login" element={<Login />} />
+          <Route path="/recuperar-password" element={<RecuperarPassword />} />
+          <Route path="/reset/:token" element={<ResetPassword />} />
+          <Route path="/confirmar/:token" element={<ConfirmarCuenta />} />
+        </Route>
+
+        <Route path="/dashboard/*" element={
+          <ProtectedRoute>
+            <Routes>
+              <Route element={<Dashboard />}>
+                <Route index element={<Perfil />} />
+                <Route path="perfil" element={<Perfil />} />
+              </Route>
+            </Routes>
+          </ProtectedRoute>
+        } />
+
+      </Routes>
     </BrowserRouter>
   )
 }
