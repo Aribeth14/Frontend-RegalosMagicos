@@ -150,15 +150,15 @@ function Login() {
               </div>
               <div>
                 <label className="text-xs font-semibold text-gray-500 mb-1 block">
-                  Celular
+                  Teléfono
                 </label>
                 <input
                   type="text"
-                  placeholder="Tu celular"
+                  placeholder="Tu teléfono"
                   className="w-full border border-pink-100 rounded-xl px-4 py-3 text-sm text-gray-600 outline-none focus:border-[#00b1c1] transition"
-                  {...register("celular", { required: "El celular es obligatorio" })}
+                  {...register("telefono", { required: "El teléfono es obligatorio" })}
                 />
-                {errors.celular && <p className="text-red-400 text-xs mt-1">{errors.celular.message}</p>}
+                {errors.telefono && <p className="text-red-400 text-xs mt-1">{errors.telefono.message}</p>}
               </div>
               <div>
                 <label className="text-xs font-semibold text-gray-500 mb-1 block">
