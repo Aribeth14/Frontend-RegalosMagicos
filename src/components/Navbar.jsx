@@ -11,7 +11,7 @@ function Navbar() {
       </div>
 
       <div className="hidden md:flex gap-8 text-base text-gray-400 font-bold">
-        <Link to="/" className="text-[#00b1c1] transition">Inicio</Link>
+        <Link to="/" className="text-[#00b1c1]">Inicio</Link>
         <Link to="/catalogo" className="hover:text-[#bd3869] transition">Catálogo</Link>
         <Link to="/perfil" className="hover:text-[#bd3869] transition">Mi perfil</Link>
         <Link to="/carrito" className="hover:text-[#bd3869] transition">Carrito</Link>
