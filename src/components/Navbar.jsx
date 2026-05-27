@@ -3,7 +3,7 @@ import rm from '../assets/RM.png'
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-12 h-20 bg-white border-b border-pink-100">
+    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-12 h-20 bg-white border-b border-pink-100">
       <div className="flex items-center gap-2">
         <Link to="/" className="font-bold text-[#bd3869]">
           <img src = {rm} alt="Logo" className = "h-12 w-auto object-contain"></img>

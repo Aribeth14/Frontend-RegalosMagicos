@@ -33,7 +33,7 @@ function Home() {
     
     <main className="bg-[#fdf6f9] min-h-screen">
 
-      <section className="bg-[#fce8f3] w-full">
+      <section className="bg-[#fce8f3] w-full mt-20">
         <div className='max-w-6xl mx-auto px-12 py-10 flex flex-col md:flex-row items-center justify-between gap-10'>
           <div className="flex-1">
             <h1 className="text-5xl font-bold text-gray-700 mt-6 mb-5 leading-tight">
