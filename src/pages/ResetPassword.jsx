@@ -15,7 +15,7 @@ function ResetPassword() {
 
   useEffect(() => {
     const verifyToken = async () => {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/recuperarpassword/${token}`
+      const url = `${import.meta.env.VITE_BACKEND_URL}/reset/${token}`
       await fetchDataBackend(url, null, 'GET')
       setTokenValido(true)
     }
