@@ -1,4 +1,4 @@
-import da from '../assets/desayuno_arco.jpeg'
+import rfa from '../assets/desayuno_arco.jpeg'
 import af from '../assets/arreglo_flores.jpeg'
 import rp from '../assets/regalo_peluche.jpeg'
 import dbh from '../assets/desayuno_bh.jpeg'
@@ -39,7 +39,7 @@ function Home() {
 
         {/*Imagenes */}
           <div className="flex-1 grid grid-cols-2 gap-6 w-full">
-            <img src={da} alt="Desayuno Arco" className="w-full h-70 object-cover rounded-3xl shadow-md" />
+            <img src={rfa} alt="Regalo Futbolero Arco" className="w-full h-70 object-cover rounded-3xl shadow-md" />
             <img src={af} alt="Arreglo Floral" className="w-full h-70 object-cover rounded-3xl shadow-md" />
             <img src={rp} alt="Regalo Personalizado" className="w-full h-70 object-cover rounded-3xl shadow-md" />
             <img src={dbh} alt="Desayuno Hombre" className="w-full h-70 object-cover rounded-3xl shadow-md" />

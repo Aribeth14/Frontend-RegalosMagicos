@@ -1,14 +1,30 @@
 import { useState } from 'react'
+import rfa from '../assets/desayuno_arco.jpeg'
+import af from '../assets/arreglo_flores.jpeg'
+import rp from '../assets/regalo_peluche.jpeg'
+import dbh from '../assets/desayuno_bh.jpeg'
+import dma from '../assets/desayunoM_arco.jpeg'
+import dhbm from '../assets/desayunoHB_madera.jpeg'
+import dmf from '../assets/desayunoM_flores.jpeg'
+import fb from '../assets/fresas_burbuja.jpeg'
+import cb from '../assets/regaloB_cerveza.jpeg'
+import ctj from '../assets/cajaT_jarro.jpeg'
+import rfr from '../assets/ramoFR.jpeg'
+import cff from '../assets/cajaFF.jpeg'
 
 const productos = [
-  { id: 1, img: 'https://i.pinimg.com/736x/de/b3/2b/deb32baf517ae6d7db02a700d6409eee.jpg', nombre: 'Desayuno Sorpresa', desc: 'Pan artesanal + frutas + café', precio: 18.00, categoria: 'Desayunos' },
-  { id: 2, img: 'https://static.vecteezy.com/system/resources/previews/005/385/876/non_2x/romantic-breakfast-in-bed-photo.jpg', nombre: 'Desayuno Romántico', desc: 'Pancakes + fresas + chocolate', precio: 22.00, categoria: 'Desayunos' },
-  { id: 3, img: 'https://thumbs.dreamstime.com/b/un-desayuno-cl%C3%A1sico-con-tostadas-y-t%C3%A9-servido-en-plato-blanco-fondo-disfrute-de-crujientes-doradas-una-taza-caliente-este-386153437.jpg', nombre: 'Desayuno Clásico', desc: 'Café + tostadas + mermelada', precio: 15.00, categoria: 'Desayunos' },
-  { id: 4, img: 'https://arreglosfloralesguate.com/wp-content/uploads/2023/11/Floral-Navideno-3.jpg.webp', nombre: 'Arreglo Floral', desc: 'Rosas + girasoles + tarjeta', precio: 24.00, categoria: 'Regalos' },
-  { id: 5, img: 'https://i.pinimg.com/474x/cb/05/58/cb0558baea91c235ac81930f0fe4ec63.jpg', nombre: 'Caja Mágica', desc: 'Personalizada con foto y mensaje', precio: 32.00, categoria: 'Regalos' },
-  { id: 6, img: 'https://s9790.pcdn.co/wp-content/uploads/2022/08/fbacd276-26ec-4218-bafa-ae5fb5aef07a.jpg', nombre: 'Kit Sorpresa', desc: 'Peluche + chocolates + tarjeta', precio: 28.00, categoria: 'Regalos' },
-  { id: 7, img: 'https://static.bainet.es/clip/1d87f9b4-721d-4582-ad3a-6151b7a90f38_source-aspect-ratio_1600w_0.jpg', nombre: 'Arreglo de Fresas', desc: 'Fresas con chocolate belga', precio: 20.00, categoria: 'Arreglos' },
-  { id: 8, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPxwjLtdGwOL7yukbqPIRAF-MfT6EOu1LO2g&s', nombre: 'Ramo Premium', desc: '12 rosas + follaje + cinta', precio: 35.00, categoria: 'Arreglos' },
+  { id: 1, img: rfa, nombre: 'Regalo Futbolero Arco', desc: '7 golosinas + mini pastel + peluche de balon de fútbol + tarjeta o foto', precio: 22.00, categoria: 'Regalos' },
+  { id: 2, img: af, nombre: 'Arreglo Floral', desc: '6 flores + 4 dulces + tarjeta o foto', precio: 18.00, categoria: 'Arreglos' },
+  { id: 3, img: rp, nombre: 'Regalo Peluche', desc: 'Peluche pequeño + 7 golosinas + de 6 a 8 flores + tarjeta o foto', precio: 15.00, categoria: 'Regalos' },
+  { id: 4, img: dbh, nombre: 'Desayuno Grande Hombre', desc: 'Doble platillo fuerte + mini pastel + frutas + jugo + frutos secos + snack dulce + yogurt con granola + mini vino + copa + tarjeta o foto', precio: 40.00, categoria: 'Desayunos' },
+  { id: 5, img: dma, nombre: 'Desayuno Mujer Arco', desc: 'Plato fuerte + mini pastel + frutas + jugo o caffe lato + frutos secos + snack dulce + yogurt con granola + tarjeta o foto', precio: 20.00, categoria: 'Desayunos' },
+  { id: 6, img: dhbm, nombre: 'Desayuno Hombre Burbuja', desc: 'Plato fuerte + mini pastel + frutas + jugo + frutos secos + snack dulce + yogurt + mini vino + copa + tarjeta o foto', precio: 35.00, categoria: 'Desayunos' },
+  { id: 7, img: dmf, nombre: 'Desayuno Mujer Flores', desc: 'Plato fuerte + frutas + jugo + frutos secos + snack dulce + yogurt con granola + tarjeta o foto + flores', precio: 30.00, categoria: 'Desayunos' },
+  { id: 8, img: fb, nombre: 'Arreglo de Fresas', desc: 'Fresas con chocolate + tarjeta o foto', precio: 20.00, categoria: 'Regalos' },
+  { id: 9, img: cb, nombre: 'Arreglo de Cerveza', desc: 'Cerveza corona + copa + 2 golosinas + mini vino + frutos secos + tarjeta o foto', precio: 35.00, categoria: 'Regalos' },
+  { id: 10, img: ctj, nombre: 'Caja con tapa', desc: 'Jarro CERVECERO + 3 golosinas + cerveza corona + frutos secos + tarjeta o foto', precio: 30.00, categoria: 'Regalos' },
+  { id: 11, img: rfr, nombre: 'Ramo rosas y ferreros', desc: 'Ramo de 12 rosas + 6 ferreros + tarjeta o foto', precio: 30.00, categoria: 'Arreglos' },
+  { id: 12, img: cff, nombre: 'Caja con flores y fresas', desc: '6 flores + 6 fresas con chocolate + tarjeta o foto', precio: 25.00, categoria: 'Arreglos' }
 ]
 
 const categorias = ['Todos', 'Desayunos', 'Regalos', 'Arreglos']
@@ -67,23 +83,23 @@ function Catalogo() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {productosFiltrados.map(item => (
-              <div key={item.id} className="bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-md transition cursor-pointer">
+              <div key={item.id} className="bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 duration-300 transition cursor-pointer">
                 <img
                   src={item.img}
                   alt={item.nombre}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-66 object-cover"
                   onError={e => e.target.src = 'https://via.placeholder.com/400x200?text=Imagen+no+disponible'}
                 />
                 <div className="p-5">
                   <span className="text-xs font-semibold text-[#00b1c1] bg-[#e8f7f9] px-2 py-1 rounded-full">
                     {item.categoria}
                   </span>
-                  <p className="font-semibold text-gray-700 text-sm mt-3">{item.nombre}</p>
-                  <p className="text-xs text-gray-400 mt-1 mb-4">{item.desc}</p>
+                  <p className="font-semibold text-gray-700 text-lg mt-3">{item.nombre}</p>
+                  <p className="text-sm text-gray-400 mt-1 mb-4">{item.desc}</p>
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-[#bd3869] font-bold">${item.precio.toFixed(2)}</span>
                     <div className="flex gap-2">
-                      <button className="border border-[#bd3869] text-[#bd3869] text-xs font-semibold px-3 py-2 rounded-full hover:bg-[#fce8f3] transition">
+                      <button className="border border-[#bd3869] text-[#bd3869] text-sm font-semibold px-3 py-2 rounded-full hover:bg-[#fce8f3] transition">
                         Personalizar
                       </button>
                       <button className="w-8 h-8 rounded-full bg-[#00b1c1] text-white flex items-center justify-center text-lg hover:opacity-80 transition">
