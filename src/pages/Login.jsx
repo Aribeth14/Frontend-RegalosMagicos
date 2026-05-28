@@ -5,6 +5,7 @@ import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
 import { ToastContainer } from 'react-toastify'
 import { useFetch } from '../hooks/useFetch'
 import storeAuth from "../context/storeAuth"
+import logo from '../assets/logo.png'
 
 function Login() {
   const [esLogin, setEsLogin] = useState(true)
@@ -35,11 +36,9 @@ function Login() {
       <div className="w-full max-w-md">
 
         <div className="text-center mb-8">
-          <div className="w-14 h-14 border-2 border-[#00b1c1] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 bg-white">
-            🎁
+          <div className="w-24 h-24 border-2 border-[#00b1c1] rounded-2xl overflow-hidden flex items-center justify-center text-2xl mx-auto mb-4 bg-white">
+            <img src = {logo} alt="Logo" className = "w-full h-full object-cover"></img>
           </div>
-          <h1 className="text-2xl font-bold text-gray-700">Regalos Mágicos</h1>
-          <p className="text-gray-400 text-sm mt-1">desayunos y regalos</p>
         </div>
 
         <div className="bg-white rounded-3xl border border-pink-100 p-8 shadow-sm">
