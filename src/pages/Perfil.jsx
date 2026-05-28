@@ -163,10 +163,7 @@ function Perfil() {
           </form>
         </div>
 
-        <div className="bg-white rounded-3xl border border-pink-100 p-6 shadow-sm">
-          <h3 className="text-sm font-bold text-gray-600 mb-4">Mis pedidos recientes</h3>
-          <p className="text-xs text-gray-400 text-center py-4">No tienes pedidos recientes</p>
-        </div>
+       
 
       </div>
     </div>

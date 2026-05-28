@@ -21,7 +21,7 @@ function Login() {
     if (response) {
       setToken(response.token)
       setRol(response.rol)
-      navigate('/dashboard')
+      navigate('/')
     }
   }
 

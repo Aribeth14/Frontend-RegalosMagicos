@@ -1,5 +1,7 @@
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
 import { useState } from 'react'
+import storeAuth from '../context/storeAuth'
+
 import rfa from '../assets/desayuno_arco.jpeg'
 import af from '../assets/arreglo_flores.jpeg'
 import rp from '../assets/regalo_peluche.jpeg'
@@ -12,7 +14,8 @@ import cb from '../assets/regaloB_cerveza.jpeg'
 import ctj from '../assets/cajaT_jarro.jpeg'
 
 function Home() {
-  const usuarioLogueado = false
+  const { token } = storeAuth()
+  const usuarioLogueado = !!token
   const [favorito, setFavorito] = useState(false)
   return (
     <>

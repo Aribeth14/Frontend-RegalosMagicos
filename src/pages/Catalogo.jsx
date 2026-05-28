@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
+import storeAuth from '../context/storeAuth'
 
 import rfa from '../assets/desayuno_arco.jpeg'
 import af from '../assets/arreglo_flores.jpeg'
@@ -32,7 +33,8 @@ const productos = [
 const categorias = ['Todos', 'Desayunos', 'Regalos', 'Arreglos']
 
 function Catalogo() {
-  const usuarioLogueado = false
+  const { token } = storeAuth()
+  const usuarioLogueado = !!token
   const [favorito, setFavorito] = useState(false)
 
   const [categoriaActiva, setCategoriaActiva] = useState('Todos')
