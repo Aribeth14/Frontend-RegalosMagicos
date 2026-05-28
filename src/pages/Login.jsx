@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { MdVisibility, MdVisibilityOff } from 'react-icons/md'
+import { MdVisibility, MdVisibilityOff, MdArrowBack } from 'react-icons/md'
 import { ToastContainer } from 'react-toastify'
 import { useFetch } from '../hooks/useFetch'
 import storeAuth from "../context/storeAuth"
@@ -35,9 +35,18 @@ function Login() {
       <ToastContainer />
       <div className="w-full max-w-md">
 
+        {/* FLECHA DE REGRESO */}
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-1 text-[#bd3869] text-sm font-semibold mb-4 hover:opacity-75 transition"
+        >
+          <MdArrowBack size={20} />
+          Volver al inicio
+        </button>
+
         <div className="text-center mb-8">
           <div className="w-24 h-24 border-2 border-[#00b1c1] rounded-2xl overflow-hidden flex items-center justify-center text-2xl mx-auto mb-4 bg-white">
-            <img src = {logo} alt="Logo" className = "w-full h-full object-cover"></img>
+            <img src={logo} alt="Logo" className="w-full h-full object-cover"></img>
           </div>
         </div>
 
