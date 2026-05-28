@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { FaRegHeart, FaHeart } from 'react-icons/fa'
+
 import rfa from '../assets/desayuno_arco.jpeg'
 import af from '../assets/arreglo_flores.jpeg'
 import rp from '../assets/regalo_peluche.jpeg'
@@ -30,6 +32,9 @@ const productos = [
 const categorias = ['Todos', 'Desayunos', 'Regalos', 'Arreglos']
 
 function Catalogo() {
+  const usuarioLogueado = false
+  const [favorito, setFavorito] = useState(false)
+
   const [categoriaActiva, setCategoriaActiva] = useState('Todos')
   const [busqueda, setBusqueda] = useState('')
 
@@ -39,8 +44,11 @@ function Catalogo() {
     return coincideCategoria && coincideBusqueda
   })
 
+  
+
   return (
-    <div className="min-h-screen bg-[#fdf6f9]">
+    
+    <div className="min-h-screen bg-[#fdf6f9] pt-24">
 
       <div className="bg-white border-b border-pink-100 px-12 py-8">
         <h1 className="text-2xl font-bold text-gray-700 mb-1">
@@ -83,7 +91,7 @@ function Catalogo() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {productosFiltrados.map(item => (
-              <div key={item.id} className="bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 duration-300 transition cursor-pointer">
+              <div key={item.id} className="group relative bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 duration-300 transition cursor-pointer">
                 <img
                   src={item.img}
                   alt={item.nombre}
@@ -99,15 +107,39 @@ function Catalogo() {
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-[#bd3869] font-bold">${item.precio.toFixed(2)}</span>
                     <div className="flex gap-2">
-                      <button className="border border-[#bd3869] text-[#bd3869] text-sm font-semibold px-3 py-2 rounded-full hover:bg-[#fce8f3] transition">
-                        Personalizar
-                      </button>
-                      <button className="w-8 h-8 rounded-full bg-[#00b1c1] text-white flex items-center justify-center text-lg hover:opacity-80 transition">
-                        +
-                      </button>
+                      {usuarioLogueado && (
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => setFavorito(!favorito)}
+                            className="w-8 h-8 rounded-full border border-pink-200 text-[#bd3869] flex items-center justify-center hover:bg-[#fce8f3] hover:scale-110 transition duration-300"
+                          >
+                            {favorito ? <FaHeart size={14} /> : <FaRegHeart size={14} />}
+                          </button>
+
+                          <button className="border border-[#bd3869] text-[#bd3869] text-xs font-semibold px-3 py-2 rounded-full hover:bg-[#fce8f3] transition">
+                            Personalizar
+                          </button>
+
+                          <button className="w-8 h-8 rounded-full bg-[#00b1c1] text-white flex items-center justify-center text-lg hover:opacity-80 transition">
+                            +
+                          </button>
+
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
+                {!usuarioLogueado && (
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                  
+                  <div className="bg-white px-5 py-3 rounded-2xl shadow-lg">
+                    <p className="text-sm font-semibold text-[#bd3869] text-center">
+                      Debes iniciar sesión para comprar
+                    </p>
+                  </div>
+
+                </div>
+              )}
               </div>
             ))}
           </div>
