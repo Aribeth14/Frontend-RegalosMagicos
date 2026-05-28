@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import rm from '../assets/RM.png'
 
 function Navbar() {
+  const usuarioLogueado = false
   return (
     <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-12 h-20 bg-white border-b border-pink-100">
       <div className="flex items-center gap-2">
@@ -13,8 +14,8 @@ function Navbar() {
       <div className="hidden md:flex gap-8 text-base text-gray-400 font-bold">
         <Link to="/" className="text-[#00b1c1]">Inicio</Link>
         <Link to="/catalogo" className="hover:text-[#bd3869] transition">Catálogo</Link>
-        <Link to="/perfil" className="hover:text-[#bd3869] transition">Mi perfil</Link>
-        <Link to="/carrito" className="hover:text-[#bd3869] transition">Carrito</Link>
+        {usuarioLogueado && (<Link to="/perfil" className="hover:text-[#bd3869] transition">Mi perfil</Link>)}
+        {usuarioLogueado && (<Link to="/carrito" className="hover:text-[#bd3869] transition">Carrito</Link>)}
       </div>
 
       <Link to="/login">

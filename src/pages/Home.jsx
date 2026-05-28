@@ -1,3 +1,5 @@
+import { FaRegHeart, FaHeart } from 'react-icons/fa'
+import { useState } from 'react'
 import rfa from '../assets/desayuno_arco.jpeg'
 import af from '../assets/arreglo_flores.jpeg'
 import rp from '../assets/regalo_peluche.jpeg'
@@ -10,6 +12,8 @@ import cb from '../assets/regaloB_cerveza.jpeg'
 import ctj from '../assets/cajaT_jarro.jpeg'
 
 function Home() {
+  const usuarioLogueado = false
+  const [favorito, setFavorito] = useState(false)
   return (
     <>
       {/* Chat IA */}
@@ -78,7 +82,7 @@ function Home() {
             { img: dhbm, nombre: 'Desayuno Hombre Burbuja', desc: 'Plato fuerte + mini pastel + frutas + jugo + frutos secos + snack dulce + yogurt + mini vino + copa + tarjeta o foto', precio: '$35.00' },
             {img: dmf, nombre: 'Desayuno Mujer Flores', desc: 'Plato fuerte + frutas + jugo + frutos secos + snack dulce + yogurt con granola + tarjeta o foto + flores', precio: '$30.00' },
           ].map((item, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 duration-300 transition">
+            <div key={i} className="group relative bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 duration-300 transition">
               <img
                 src={item.img}
                 alt={item.nombre}
@@ -89,11 +93,31 @@ function Home() {
                 <p className="text-sm text-gray-400 mt-1 mb-4">{item.desc}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-[#bd3869] font-bold">{item.precio}</span>
-                  <button className="w-8 h-8 rounded-full bg-[#00b1c1] text-white flex items-center justify-center text-lg hover:opacity-80 transition">
+                  {usuarioLogueado && (<div className="flex gap-2">
+                    <button
+                      onClick={() => setFavorito(!favorito)}
+                      className="w-8 h-8 rounded-full border border-pink-200 text-[#bd3869] flex items-center justify-center hover:bg-[#fce8f3] transition"
+                    >
+                      {favorito ? <FaHeart size={14} /> : <FaRegHeart size={14} />}
+                    </button>
+                    <button className="w-8 h-8 rounded-full bg-[#00b1c1] text-white flex items-center justify-center text-lg hover:opacity-80 transition">
                     +
-                  </button>
+                    </button>
+                  </div>)}
+                  
                 </div>
               </div>
+              {!usuarioLogueado && (
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                  
+                  <div className="bg-white px-5 py-3 rounded-2xl shadow-lg">
+                    <p className="text-sm font-semibold text-[#bd3869] text-center">
+                      Debes iniciar sesión para comprar
+                    </p>
+                  </div>
+
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -110,7 +134,7 @@ function Home() {
             { img: cb, nombre: 'Arreglo de Cerveza', desc: 'Cerveza corona + copa + 2 golosinas + mini vino + frutos secos + tarjeta o foto', precio: '$35.00' },
             {img: ctj, nombre: 'Caja con tapa', desc: 'Jarro CERVECERO + 3 golosinas + cerveza corona + frutos secos + tarjeta o foto', precio: '$30.00' },
           ].map((item, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 duration-300 transition">
+            <div key={i} className="group relative bg-white rounded-2xl border border-pink-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 duration-300 transition">
               <img
                 src={item.img}
                 alt={item.nombre}
@@ -121,11 +145,31 @@ function Home() {
                 <p className="text-sm text-gray-400 mt-1 mb-4">{item.desc}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-[#bd3869] font-bold">{item.precio}</span>
-                  <button className="w-8 h-8 rounded-full bg-[#00b1c1] text-white flex items-center justify-center text-lg hover:opacity-80 transition">
+                  {usuarioLogueado && (<div className="flex gap-2">
+                    <button
+                      onClick={() => setFavorito(!favorito)}
+                      className="w-8 h-8 rounded-full border border-pink-200 text-[#bd3869] flex items-center justify-center hover:bg-[#fce8f3] transition"
+                    >
+                      {favorito ? <FaHeart size={14} /> : <FaRegHeart size={14} />}
+                    </button>
+                    <button className="w-8 h-8 rounded-full bg-[#00b1c1] text-white flex items-center justify-center text-lg hover:opacity-80 transition">
                     +
-                  </button>
+                    </button>
+                  </div>)}
+
                 </div>
               </div>
+              {!usuarioLogueado && (
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                  
+                  <div className="bg-white px-5 py-3 rounded-2xl shadow-lg">
+                    <p className="text-sm font-semibold text-[#bd3869] text-center">
+                      Debes iniciar sesión para comprar
+                    </p>
+                  </div>
+
+                </div>
+              )}
             </div>
           ))}
         </div>
